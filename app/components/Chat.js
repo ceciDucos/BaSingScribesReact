@@ -23,7 +23,10 @@ function Chat() {
     }, [appState.isChatOpen]);
 
     useEffect(() => {
-        socket.current = io("http://localhost:8080");
+        socket.current = io(
+            process.env.BACKENDURL ||
+                "https://mybackendforreactapp-9rq8.onrender.com"
+        );
         socket.current.on("chatFromServer", (message) => {
             const messages = state.chatMessages;
             messages.push(message);

@@ -5,7 +5,8 @@ import Axios from "axios";
 import { CSSTransition } from "react-transition-group";
 import NotFound from "./components/NotFound";
 
-Axios.defaults.baseURL = process.env.BACKENDURL || "";
+Axios.defaults.baseURL =
+    process.env.BACKENDURL || "https://mybackendforreactapp-9rq8.onrender.com";
 
 // My componentes
 import Header from "./components/Header";
