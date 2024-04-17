@@ -1,20 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Axios from "axios";
 import DispatchContext from "../DispatchContext";
 
 function HeaderLoggedOut() {
     const appDispatch = useContext(DispatchContext);
-    const useState = React.useState;
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            const response = await Axios.post("/login", {
-                username,
-                password,
-            });
+            const response = await Axios.post("/login", { username, password });
             if (response.data) {
                 appDispatch({ type: "login", data: response.data });
                 appDispatch({
@@ -28,40 +24,63 @@ function HeaderLoggedOut() {
                 });
             }
         } catch (error) {
-            console.log(error);
-            console.log("Pasó algo");
+            console.log("Login error:", error);
         }
     }
+
+    // Style definitions refined to match the Earth Kingdom theme more closely
+    const formStyle = {
+        padding: "10px",
+        borderRadius: "4px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+    };
+
+    const inputStyle = {
+        backgroundColor: "#2F4F4F", // Dark Slate Gray for input backgrounds
+        color: "#F0E68C", // Khaki for input text
+        border: `1px solid #6E8B3D`, // Bamboo Green for borders
+        padding: "5px",
+        borderRadius: "2px", // Slight rounding of corners
+        width: "100%", // Full-width inputs
+        marginRight: "10px", // Spacing between input and button
+    };
+
+    const buttonStyle = {
+        backgroundColor: "#487D49", // Jade Green for the button
+        color: "#F0E68C", // A pale golden color for button text
+        border: "none",
+        padding: "6px 12px",
+        borderRadius: "2px",
+        cursor: "pointer",
+        fontWeight: "bold",
+        // Flex settings to ensure button does not stretch
+        flexShrink: 0,
+    };
+
     return (
-        <form onSubmit={handleSubmit} className="mb-0 pt-2 pt-md-0">
-            <div className="row align-items-center">
-                <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                    <input
-                        onChange={(e) => {
-                            setUsername(e.target.value);
-                        }}
-                        name="username"
-                        className="form-control form-control-sm input-dark"
-                        type="text"
-                        placeholder="Username"
-                        autoComplete="off"
-                    />
-                </div>
-                <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                    <input
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                        name="password"
-                        className="form-control form-control-sm input-dark"
-                        type="password"
-                        placeholder="Password"
-                    />
-                </div>
-                <div className="col-md-auto">
-                    <button className="btn btn-success btn-sm">Sign In</button>
-                </div>
-            </div>
+        <form onSubmit={handleSubmit} style={formStyle}>
+            <input
+                onChange={(e) => setUsername(e.target.value)}
+                name="username"
+                className="form-control form-control-sm input-dark"
+                type="text"
+                placeholder="Username"
+                autoComplete="off"
+                style={inputStyle}
+            />
+            <input
+                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+                className="form-control form-control-sm input-dark"
+                type="password"
+                placeholder="Password"
+                style={inputStyle}
+            />
+            <button type="submit" style={buttonStyle}>
+                Sign In
+            </button>
         </form>
     );
 }

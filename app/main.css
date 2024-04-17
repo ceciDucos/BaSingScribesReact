@@ -1,5 +1,13 @@
 body {
     font-family: "Public Sans", sans-serif;
+    background-color: #f5f5dc;
+    height: 100vh;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
 }
 
 .header-bar {
