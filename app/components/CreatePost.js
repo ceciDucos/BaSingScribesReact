@@ -67,7 +67,7 @@ function CreatePost() {
                     ></textarea>
                 </div>
 
-                <button className="btn btn-primary">Save New Post</button>
+                <button className="app-btn primary">Save New Post</button>
             </form>
         </Page>
     );

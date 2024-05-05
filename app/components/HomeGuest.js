@@ -3,6 +3,7 @@ import Page from "./Page";
 import Axios from "axios";
 import { CSSTransition } from "react-transition-group";
 import DispatchContext from "../DispatchContext";
+import bear from "./../../assets/bear.png";
 
 function Home() {
     const appDispatch = useContext(DispatchContext);
@@ -327,18 +328,22 @@ function Home() {
 
     return (
         <Page wide={true} title="Welcome!">
-            <div className="row align-items-center">
-                <div className="col-lg-7 py-3 py-md-5">
-                    <h1 className="display-3">Remember Writing?</h1>
+            <div className="d-flex align-items-center justify-content-between flex-wrap">
+                <div>
+                    <img className="bear" src={bear} />
+                </div>
+                <div style={{ maxWidth: "500px" }}>
+                    <h1 className="display-5">
+                        Connect, Share, and Grow Strong
+                    </h1>
                     <p className="lead text-muted">
-                        Are you sick of short tweets and impersonal
-                        &ldquo;shared&rdquo; posts that are reminiscent of the
-                        late 90&rsquo;s email forwards? We believe getting back
-                        to actually writing is the key to enjoying the internet
-                        again.
+                        Welcome to Ba Sing Scribes, where the wisdom of Ba Sing
+                        Se inspires every word. Dive into a community as
+                        enduring as the city walls, where posts build bridges
+                        and followers forge friendships.
                     </p>
                 </div>
-                <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
+                <div>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label
@@ -373,7 +378,10 @@ function Home() {
                                 </div>
                             </CSSTransition>
                         </div>
-                        <div className="form-group">
+                        <div
+                            className="form-group"
+                            style={{ minWidth: "310px" }}
+                        >
                             <label
                                 htmlFor="email-register"
                                 className="text-muted mb-1"
@@ -442,7 +450,7 @@ function Home() {
                             type="submit"
                             className="py-3 mt-4 btn btn-lg btn-success btn-block"
                         >
-                            Sign up for ComplexApp
+                            Sign up for Ba Sing Scribes
                         </button>
                     </form>
                 </div>

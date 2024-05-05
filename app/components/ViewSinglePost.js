@@ -80,9 +80,22 @@ function ViewSinglePost() {
         }
     }
 
+    const deletePostButtonStyle = {
+        cursor: "pointer",
+        background: "none",
+        border: "none",
+        padding: "0",
+        margin: "0",
+    };
+
+    const containerStyle = {
+        display: "flex",
+        justifyContent: "space-between",
+    };
+
     return (
-        <Page title="Fake Hardocoded Title">
-            <div className="d-flex justify-content-between">
+        <Page title="View post">
+            <div style={containerStyle}>
                 <h2>{post.title}</h2>
                 {isOwner() && (
                     <span className="pt-2">
@@ -98,7 +111,8 @@ function ViewSinglePost() {
                         <a
                             data-tooltip-content="Delete"
                             data-tooltip-id="delete"
-                            className="delete-post-button text-danger"
+                            style={deletePostButtonStyle}
+                            className="text-danger"
                             onClick={deleteHandler}
                         >
                             <i className="fas fa-trash"></i>

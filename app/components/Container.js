@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 
 function Container(props) {
+    const containerStyle = {
+        padding: "100px 0",
+        minHeight: "75%",
+    };
+
     return (
-        <div
-            className={
-                "container-page container py-md-5" +
-                (props.wide ? "" : "container--narrow")
-            }
-        >
+        <div className="container" style={containerStyle}>
             {props.children}
         </div>
     );

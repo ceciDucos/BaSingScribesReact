@@ -1,34 +1,3 @@
-// import React, { useState, useContext } from "react";
-// import { Link } from "react-router-dom";
-// import HeaderLoggedOut from "./HeaderLoggedOut";
-// import HeaderLoggedIn from "./HeaderLoggedIn";
-// import StateContext from "../StateContext";
-
-// function Header(props) {
-//     const appState = useContext(StateContext);
-//     const headerContent = appState.loggedIn ? (
-//         <HeaderLoggedIn />
-//     ) : (
-//         <HeaderLoggedOut />
-//     );
-//     return (
-//         <>
-//             <header className="header-bar bg-primary mb-3">
-//                 <div className="container d-flex flex-column flex-md-row align-items-center p-3">
-//                     <h4 className="my-0 mr-md-auto font-weight-normal">
-//                         <Link to="/" className="text-white">
-//                             {" "}
-//                             ComplexApp{" "}
-//                         </Link>
-//                     </h4>
-//                     {!props.staticEmpty ? headerContent : ""}
-//                 </div>
-//             </header>
-//         </>
-//     );
-// }
-
-// export default Header;
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import HeaderLoggedOut from "./HeaderLoggedOut";
@@ -44,13 +13,12 @@ function Header(props) {
     );
 
     const headerStyle = {
-        backgroundColor: "#005221",
-        color: "#EEE8AA",
+        backgroundColor: "var(--primary-color)",
         padding: "10px 20px",
         fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
         fontSize: "18px",
-        borderBottom: "5px solid #be9f02",
-        height: "84px",
+        borderBottom: "5px solid var(--secondary-color)",
+        height: "9%",
         display: "flex",
     };
 
@@ -60,12 +28,12 @@ function Header(props) {
         justifyContent: "space-between",
         width: "100%",
         fontWeight: "500",
-        color: "#F0E68C",
+        color: "var(--secondary-light-color)",
         textDecoration: "none",
     };
 
     return (
-        <header className="header-bar mb-3" style={headerStyle}>
+        <header className="header-bar" style={headerStyle}>
             <div className="container d-flex justify-content-between align-items-center">
                 <h4 className="my-0">
                     <Link to="/" style={logoStyle}>
@@ -96,7 +64,7 @@ function Header(props) {
                                 mask="url(#path-1-inside-1_34_29)"
                             />
                         </svg>
-                        Ba Sing Se
+                        Ba Sing Scribes
                     </Link>
                 </h4>
                 {!props.staticEmpty ? headerContent : ""}

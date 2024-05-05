@@ -28,12 +28,12 @@ const Chat = React.lazy(() => import("./components/Chat"));
 
 function Main() {
     const initialState = {
-        loggedIn: Boolean(localStorage.getItem("complexappToken")),
+        loggedIn: Boolean(localStorage.getItem("appToken")),
         flashMessages: [],
         user: {
-            token: localStorage.getItem("complexappToken"),
-            username: localStorage.getItem("complexappUsername"),
-            avatar: localStorage.getItem("complexappAvatar"),
+            token: localStorage.getItem("appToken"),
+            username: localStorage.getItem("appUsername"),
+            avatar: localStorage.getItem("appAvatar"),
         },
         isSearchOpen: false,
         isChatOpen: false,
@@ -104,13 +104,13 @@ function Main() {
 
     useEffect(() => {
         if (state.loggedIn) {
-            localStorage.setItem("complexappToken", state.user.token);
-            localStorage.setItem("complexappUsername", state.user.username);
-            localStorage.setItem("complexappAvatar", state.user.avatar);
+            localStorage.setItem("appToken", state.user.token);
+            localStorage.setItem("appUsername", state.user.username);
+            localStorage.setItem("appAvatar", state.user.avatar);
         } else {
-            localStorage.removeItem("complexappToken");
-            localStorage.removeItem("complexappUsername");
-            localStorage.removeItem("complexappAvatar");
+            localStorage.removeItem("appToken");
+            localStorage.removeItem("appUsername");
+            localStorage.removeItem("appAvatar");
         }
     }, [state.loggedIn]);
 
@@ -146,6 +146,18 @@ function Main() {
             return () => ourRequest.cancel();
         }
     }, []);
+
+    const searchOverlayStyle = {
+        display: "flex",
+        flexDirection: "column",
+        position: "fixed",
+        zOndex: "9000",
+        top: "0",
+        left: "0",
+        bottom: "0",
+        right: "0",
+        backgroundColor: "rgba(215, 215, 215, 0.911)",
+    };
 
     return (
         <StateContext.Provider value={state}>
@@ -192,7 +204,7 @@ function Main() {
                         classNames="search-overlay"
                         unmountOnExit
                     >
-                        <div className="search-overlay">
+                        <div style={searchOverlayStyle}>
                             <Suspense fallback="">
                                 <Search />
                             </Suspense>

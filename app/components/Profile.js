@@ -133,11 +133,20 @@ function Profile() {
 
     if (state.isLoading) return <LoadingDotsIcon />;
 
+    const avatarStyle = {
+        width: "32px",
+        height: "32px",
+        borderRadius: "16px",
+        marginRight: "5px",
+        position: "relative",
+        top: "-3px",
+    };
+
     return (
         <Page title="Profile Screen">
             <h2>
                 <img
-                    className="avatar-small"
+                    style={avatarStyle}
                     src={state.profileData.profileAvatar}
                 />{" "}
                 {state.profileData.profileUsername}

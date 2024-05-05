@@ -2,26 +2,50 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
+    const footerStyle = {
+        height: "16%",
+        display: "flex",
+        flexDirection: "column",
+        textAlign: "center",
+        borderTop: "5px solid var(--secondary-color)",
+        backgroundColor: "var(--primary-color)",
+        paddingTop: "16px",
+        fontSize: "13px",
+    };
+
+    const linkStyle = {
+        color: "var(--secondary-light-color)",
+    };
+
+    const copyrightStyle = {
+        color: "var(--light-grey-color)",
+    };
+
+    const homeLinkStyle = {
+        color: "var(--light-grey-color)",
+        fontWeight: "bold",
+    };
+
     return (
         <>
-            <footer className="border-top text-center small text-muted py-3">
+            <footer style={footerStyle}>
                 <p>
-                    <Link to="/" className="mx-1">
+                    <Link to="/" style={linkStyle}>
                         Home
                     </Link>{" "}
-                    |
-                    <Link className="mx-1" to="/about-us">
+                    <b style={{ color: "var(--light-grey-color)" }}> | </b>
+                    <Link style={linkStyle} to="/about-us">
                         About Us
                     </Link>{" "}
-                    |
-                    <Link className="mx-1" to="/terms">
+                    <b style={{ color: "var(--light-grey-color)" }}> | </b>
+                    <Link style={linkStyle} to="/terms">
                         Terms
                     </Link>
                 </p>
-                <p className="m-0">
-                    Copyright &copy; 2020
-                    <Link to="/" className="text-muted">
-                        ComplexApp
+                <p style={copyrightStyle}>
+                    Copyright &copy; 2020{" "}
+                    <Link to="/" style={homeLinkStyle}>
+                        Ba Sing Scribes
                     </Link>
                     . All rights reserved.
                 </p>

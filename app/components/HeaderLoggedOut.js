@@ -78,7 +78,7 @@ function HeaderLoggedOut() {
                 placeholder="Password"
                 style={inputStyle}
             />
-            <button type="submit" style={buttonStyle}>
+            <button type="submit" className="app-btn phantom">
                 Sign In
             </button>
         </form>

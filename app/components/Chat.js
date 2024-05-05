@@ -81,7 +81,7 @@ function Chat() {
                 (appState.isChatOpen ? "chat-wrapper--is-visible" : "")
             }
         >
-            <div className="chat-title-bar bg-primary">
+            <div className="chat-title-bar">
                 Chat
                 <span
                     onClick={() => appDispatch({ type: "closeChat" })}

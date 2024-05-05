@@ -83,13 +83,87 @@ function Search() {
         setState({ ...state, searchTerm: value });
     }
 
+    const searchOverlayBottom = { overflow: "auto" };
+    const searchOverlayTop = { backgroundColor: "var(--white-color)" };
+    const containerStyle = {
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        paddingTop: "15px",
+        paddingBottom: "15px",
+        margin: "75px auto",
+        maxWidth: "732px",
+    };
+
+    const searchOverlayIcon = {
+        color: "var(--blue-color)",
+        fontSize: "1.4rem",
+        margin: "0",
+        marginRight: "10px",
+    };
+
+    const liveSearchResults = {
+        width: "100%",
+        opacity: "0",
+        transition: "all 0.3s ease-out",
+        transform: "scale(1.07)",
+    };
+
+    const liveSearchResultsVisible = {
+        ...liveSearchResults,
+        opacity: "1",
+        transform: "scale(1)",
+    };
+
+    const liveSearchField = {
+        backgroundColor: "transparent",
+        border: "none",
+        fontSize: "1.1rem",
+        outline: "none",
+        flex: "1",
+        color: "var(--blue-color)",
+    };
+
+    const closeLiveSearchStyle = {
+        fontSize: "1.5rem",
+        cursor: "pointer",
+        opacity: "0.75",
+        lineHeight: "1",
+        color: "var(--black-color)",
+    };
+
+    const circleLoaderStyle = {
+        opacity: "0",
+        transition: "opacity 0.45s ease-out, visibility 0.45s ease-out",
+        visibility: "hidden",
+        position: "absolute",
+        left: "50%",
+        boxSizing: "border-box",
+        width: "65px",
+        height: "65px",
+        borderRadius: "100%",
+        border: "10px solid rgba(73, 80, 87, 0.2)",
+        borderTopColor: "#495057",
+        willChange: "-webkit-transform, transform",
+        WebkitTransform: "rotate(0deg)",
+        transform: "rotate(0deg)",
+        WebkitAnimation: "spin 1s infinite linear",
+        animation: "spin 1s infinite linear",
+    };
+
+    const circleLoaderVisibleStyle = {
+        ...circleLoaderStyle,
+        visibility: "visible",
+        opacity: "1",
+    };
+
     return (
         <>
-            <div className="search-overlay-top shadow-sm">
-                <div className="container container--narrow">
+            <div style={searchOverlayTop}>
+                <div style={containerStyle}>
                     <label
                         htmlFor="live-search-field"
-                        className="search-overlay-icon"
+                        style={searchOverlayIcon}
                     >
                         <i className="fas fa-search"></i>
                     </label>
@@ -98,35 +172,33 @@ function Search() {
                         type="text"
                         autoComplete="off"
                         id="live-search-field"
-                        className="live-search-field"
+                        style={liveSearchField}
                         placeholder="What are you interested in?"
                         onChange={handleInput}
                     />
                     <span
                         onClick={() => appDispatch({ type: "closeSearch" })}
-                        className="close-live-search"
+                        style={closeLiveSearchStyle}
                     >
                         <i className="fas fa-times-circle"></i>
                     </span>
                 </div>
             </div>
 
-            <div className="search-overlay-bottom">
-                <div className="container container--narrow py-3">
+            <div style={searchOverlayBottom}>
+                <div style={containerStyle}>
                     <div
-                        className={
-                            "circle-loader " +
-                            (state.show == "loading"
-                                ? "circle-loader--visible"
-                                : "")
+                        style={
+                            state.show == "loading"
+                                ? circleLoaderVisibleStyle
+                                : circleLoaderStyle
                         }
                     ></div>
                     <div
-                        className={
-                            "live-search-results " +
-                            (state.show == "results"
-                                ? "live-search-results--visible"
-                                : "")
+                        style={
+                            state.show == "results"
+                                ? liveSearchResultsVisible
+                                : liveSearchResults
                         }
                     >
                         {state.results.length > 0 ? (
